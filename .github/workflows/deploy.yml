@@ -39,6 +39,8 @@ jobs:
       - name: Build with Next.js
         run: |
           cd frontend
+          # Remove API routes as they don't work on GitHub Pages
+          rm -rf app/api
           npm run export
 
       - name: Upload artifact

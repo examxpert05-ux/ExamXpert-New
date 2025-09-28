@@ -21,6 +21,14 @@ const nextConfig = {
         // Add the database folder to the resolve modules
         config.resolve.modules.push(require('path').resolve(__dirname, '../database'))
 
+        // Exclude API routes from static build (they don't work on GitHub Pages)
+        if (!dev && !isServer) {
+            config.resolve.alias = {
+                ...config.resolve.alias,
+                '@/app/api': false,
+            }
+        }
+
         return config
     },
 }
