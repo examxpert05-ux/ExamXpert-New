@@ -6,7 +6,14 @@ import { CheckCircle, XCircle, Home, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import { useAuth } from '@/lib/AuthContext'
-import { getTestConfig } from '../../../test-configs.js'
+import { getTestConfig, getAllTestCodes } from '../../../test-configs.js'
+
+export function generateStaticParams() {
+    const testCodes = getAllTestCodes()
+    return testCodes.map((testId) => ({
+        testId: testId,
+    }))
+}
 
 const fadeInUp = {
     initial: { opacity: 0, y: 20 },
